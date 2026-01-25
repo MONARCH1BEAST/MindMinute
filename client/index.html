@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MindMinute</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<header>
+  <div class="brand">
+    <img src="assets/logo.jpeg" />
+    <span>MindMinute</span>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cards">
+
+    <div class="card left">
+      <h2>Your thoughts</h2>
+      <textarea id="userInput" placeholder="Type freely..."></textarea>
+      <button id="beginBtn">Begin Reset</button>
+    </div>
+
+    <div class="card right" id="answerCard">
+      <h2>Your Moment</h2>
+      <div id="aiText" class="answer">
+        Your reflection will appear here.
+      </div>
+    </div>
+
+  </section>
+
+  <section class="timer-zone">
+
+    <div class="float pic1"></div>
+    <div class="float pic2"></div>
+
+    <div class="timer-wrap">
+      <svg width="200" height="200">
+        <circle cx="100" cy="100" r="80" class="bg-ring"/>
+        <circle cx="100" cy="100" r="80" class="fg-ring" id="progressRing"/>
+      </svg>
+      <div id="timeText">60s</div>
+    </div>
+
+    <div class="timer-buttons">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn" class="hide">Pause</button>
+      <button id="endBtn" class="hide">End</button>
+    </div>
+
+  </section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

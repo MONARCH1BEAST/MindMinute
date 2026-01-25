@@ -1,0 +1,100 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  min-height:100vh;
+  color:white;
+  background:#020615;
+  overflow:auto;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+    url("../assets/bg.jpeg") center/cover no-repeat;
+  filter:blur(40px);
+  z-index:-1;
+}
+
+header{
+  height:70px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 50px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+}
+
+.brand img{
+  width:38px;
+  border-radius:50%;
+}
+
+nav a{
+  color:#8bbcff;
+  margin-left:20px;
+  text-decoration:none;
+}
+
+nav .active{
+  color:#6fe3ff;
+}
+
+.about{
+  max-width:900px;
+  margin:auto;
+  padding:60px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+
+.hero h1{
+  font-size:2.6rem;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:.85;
+  line-height:1.6;
+}
+
+.card{
+  background:rgba(255,255,255,.05);
+  padding:24px;
+  border-radius:18px;
+  backdrop-filter:blur(10px);
+}
+
+.card h2{
+  margin-bottom:10px;
+}
+
+.card p,
+.card li{
+  line-height:1.6;
+  opacity:.85;
+}
+
+.card ul{
+  padding-left:20px;
+}
+
+.closing{
+  text-align:center;
+  opacity:.9;
+  font-size:1.2rem;
+  margin-top:20px;
+}
