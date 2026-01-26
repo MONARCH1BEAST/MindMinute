@@ -29,7 +29,7 @@ beginBtn.onclick = async () => {
   aiBox.classList.add("breathing");
 
   try {
-    const res = await fetch("http://localhost:5000/api/generate-reset", {
+    const res = await fetch("/api/generate-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text })
