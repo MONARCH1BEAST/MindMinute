@@ -10,16 +10,23 @@ const userInput = document.getElementById("userInput");
 
 let time = 60;
 let timer = null;
-const circumference = 2 * Math.PI * 80;
+
+/* -------- RING SETUP -------- */
+const RADIUS = 80;
+const circumference = 2 * Math.PI * RADIUS;
+
 ring.style.strokeDasharray = circumference;
+ring.style.strokeDashoffset = 0;
 
 function setRing(t) {
-  ring.style.strokeDashoffset = circumference - (t / 60) * circumference;
+  ring.style.strokeDashoffset =
+    circumference - (t / 60) * circumference;
 }
 
-/* ------------------ AI CALL ------------------ */
-beginBtn.onclick = async () => {
+/* -------- AI CALL -------- */
+beginBtn.addEventListener("click", async () => {
   const text = userInput.value.trim();
+
   if (!text) {
     alert("Please type something first.");
     return;
@@ -29,24 +36,27 @@ beginBtn.onclick = async () => {
   aiBox.classList.add("breathing");
 
   try {
-    const res = await fetch("/api/generate-reset", {
+    const res = await fetch("http://localhost:5000/api/generate-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text })
     });
 
+    if (!res.ok) throw new Error("API failed");
+
     const data = await res.json();
-    aiBox.textContent = data.reset || "No response.";
+    aiBox.textContent = data.reset;
   } catch (err) {
-    aiBox.textContent = "Something went wrong. Please try again.";
+    aiBox.textContent =
+      "The system paused for a moment. Please breathe and try again.";
+    console.error(err);
   }
 
   aiBox.classList.remove("breathing");
-};
+});
 
-/* ------------------ TIMER ------------------ */
-
-startBtn.onclick = () => {
+/* -------- TIMER -------- */
+startBtn.addEventListener("click", () => {
   if (timer) return;
 
   startBtn.classList.add("hide");
@@ -60,20 +70,22 @@ startBtn.onclick = () => {
 
     if (time <= 0) stopTimer();
   }, 1000);
-};
+});
 
-pauseBtn.onclick = () => {
+pauseBtn.addEventListener("click", () => {
   clearInterval(timer);
   timer = null;
+
   startBtn.classList.remove("hide");
   pauseBtn.classList.add("hide");
-};
+});
 
-endBtn.onclick = stopTimer;
+endBtn.addEventListener("click", stopTimer);
 
 function stopTimer() {
   clearInterval(timer);
   timer = null;
+
   time = 60;
   setRing(60);
   timeText.textContent = "60s";
